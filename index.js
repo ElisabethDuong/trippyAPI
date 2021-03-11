@@ -14,16 +14,21 @@ mongoose.connect(
 const port = 8000;
 const app = express();
 
-
-
-
-app.get("/hotels", async (request, response)  => {
-  const hotels = await hotelModel.find().lean().exec();
-  response.json(hotels);
-})
-
-
-
 app.listen(port, () => {
   console.log("serveur works");
+});
+
+app.get("/hotels", async (request, response) => {
+  const hotels = await hotelModel.find().lean().exec();
+  response.json(hotels);
+});
+
+app.get("/hotels/:id", async (request, response) => {
+  const hotels = await hotelModel
+    .findOne({
+      _id: request.params.id,
+    })
+    .lean()
+    .exec();
+  response.json(hotels);
 });
