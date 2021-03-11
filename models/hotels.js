@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const hotelsSchema= new mongoose.Schema({
+const hotelSchema= new mongoose.Schema({
     name:String,
     addreess:String,
     city:String,
@@ -9,5 +9,5 @@ const hotelsSchema= new mongoose.Schema({
     hasPool:Boolean,
     priceCategory:Number,
 });
-const hotelsModel= mongoose.model("hotels,hotelsSchema");
-module.exports = hotelsModel;
+const hotelModel= mongoose.model("hotels",hotelSchema);
+module.exports = hotelModel;
