@@ -14,6 +14,16 @@ mongoose.connect(
 const port = 8000;
 const app = express();
 
+
+
+
+app.get("/hotels", async (request, response)  => {
+  const hotels = await hotelModel.find().lean().exec();
+  response.json(hotels);
+})
+
+
+
 app.listen(port, () => {
   console.log("serveur works");
 });
