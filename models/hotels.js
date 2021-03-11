@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const hotelSchema = new mongoose.Schema({
   name: String,
   address: String,
@@ -9,5 +10,7 @@ const hotelSchema = new mongoose.Schema({
   hasPool: Boolean,
   priceCategory: Number, // entre 1 et 3
 });
+
 const hotelModel = mongoose.model("hotels", hotelSchema);
+
 module.exports = hotelModel;

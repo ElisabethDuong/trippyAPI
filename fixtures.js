@@ -5,7 +5,7 @@ const restaurantModel = require("./models/restaurants");
 const hotels = [
   {
     name: "Georges V",
-    address: "5 avenue Champs Elysées",
+    address: "5 avenue des Champs Elysées",
     city: "Paris",
     country: "France",
     stars: 5, //entre 1 et 5
@@ -39,11 +39,11 @@ const hotels = [
 const restaurants = [
   {
     name: "Mazurka",
-    address: "18 avenue Opera ",
+    address: "18 avenue de l'Opéra ",
     city: "Paris",
     country: "France",
     stars: 4, // entre 1 et 3
-    cuisine: "spécialitées franco-polonaises",
+    cuisine: "spécialités franco-polonaises",
     priceCategory: 3, // entre 1 et 3
   },
 
@@ -58,8 +58,8 @@ const restaurants = [
   },
   {
     name: "Ichiran",
-    address: "Palais de TOKIO",
-    city: "Tokio",
+    address: "Palais de Tokyo",
+    city: "Tokyo",
     country: "Japan",
     stars: 3, // entre 1 et 3
     cuisine: "saveurs japonaises",
