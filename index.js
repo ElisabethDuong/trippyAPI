@@ -54,4 +54,9 @@ app.put("/hotels/:id", async (request, response) => {
   response.send("hotêl mis à jour");
 });
 
-app.delete("/hotels/:id", (request, response) => {});
+app.delete("/hotels/:id", async (request, response) => {
+  const hotelDeleted = await hotelModel.deleteOne({
+    _id: request.params.id,
+  });
+  response.json(hotelDeleted);
+});
