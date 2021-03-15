@@ -22,77 +22,97 @@ app.listen(port, () => {
 
 app.use(bodyParser.json());
 
-// hotels
+// HOTELS
+
 app.get("/hotels", async (request, response) => {
-  const hotels = await hotelModel.find().lean().exec();
+  const hotels = await hotelModel
+    .find()
+    .lean()
+    .exec();
   response.json(hotels);
 });
 
 app.get("/hotels/:id", async (request, response) => {
-  const hotels = await hotelModel
+  const hotelById = await hotelModel
     .findOne({
       _id: request.params.id,
     })
     .lean()
     .exec();
-  response.json(hotels);
+  response.json(hotelById);
 });
 
 app.post("/hotels", async (request, response) => {
-  await hotelModel.create({ name: request.body.name });
-  response.send("hotêl ajouté");
+  const hotelAdded = await hotelModel.create(
+    {
+      name: request.body.name
+    }
+  );
+  response.json(hotelAdded);
 });
 
 app.put("/hotels/:id", async (request, response) => {
   const newName = request.query.newName;
-  const hotel = await hotelModel.updateOne(
-    { _id: request.params.id },
-    { name: newName }
+  const hotelUpdated = await hotelModel.updateOne(
+    {
+      _id: request.params.id
+    },
+    {
+      name: newName
+    }
   );
   hotel.name;
-  response.json(hotel);
+  response.json(hotelUpdated);
 });
 
 app.delete("/hotels/:id", async (request, response) => {
-  const hotelDeleted = await hotelModel.deleteOne({
-    _id: request.params.id,
-  });
+  const hotelDeleted = await hotelModel.deleteOne(
+    {
+      _id: request.params.id,
+    }
+  );
   response.json(hotelDeleted);
 });
 
-//restaurants
-app.get("/restaurants", async (request, response) => {
-  const restaurants = await restaurantModel.find().lean().exec();
-  response.json(restaurants);
-});
+// RESTAURANTS
 
-app.get("/restaurants/:id", async (request, response) => {
+app.get("/restaurants", async (request, response) => {
   const restaurants = await restaurantModel
-    .findOne({
-      _id: request.params.id,
-    })
+    .find()
     .lean()
     .exec();
   response.json(restaurants);
 });
 
+app.get("/restaurants/:id", async (request, response) => {
+  const restaurantById = await restaurantModel
+    .findOne({
+      _id: request.params.id,
+    })
+    .lean()
+    .exec();
+  response.json(restaurantById);
+});
+
 app.post("/restaurants", async (request, response) => {
-  await restaurantModel.create({
-    name: request.body.name,
-    address: request.body.address,
-    city: request.body.city,
-    country: request.body.country,
-    stars: request.body.stars,
-    cuisine: request.body.cuisine,
-    priceCategory: request.body.priceCategory,
-  });
-  response.send("Restaurant ajouté");
+  const restaurantAdded = await restaurantModel.create(
+    {
+      name: request.body.name,
+      address: request.body.address,
+      city: request.body.city,
+      country: request.body.country,
+      stars: request.body.stars,
+      cuisine: request.body.cuisine,
+      priceCategory: request.body.priceCategory,
+    }
+  );
+  response.json(restaurantAdded);
 });
 
 app.put("/restaurants/:id", async (request, response) => {
   // console.log(request.query);
   const newName = request.query.newName;
-  await restaurantModel
+  const restaurantUpdated = await restaurantModel
     .updateOne(
       {
         _id: request.params.id,
@@ -102,12 +122,14 @@ app.put("/restaurants/:id", async (request, response) => {
       }
     )
     .exec();
-  response.send("Nom mis à jour");
+  response.json(restaurantUpdated);
 });
 
 app.delete("/restaurants/:id", async (request, response) => {
-  await restaurantModel.deleteOne({
-    _id: request.params.id,
-  }),
-    response.send("Restaurant supprimé");
+  const restaurantDeleted = await restaurantModel.deleteOne(
+    {
+      _id: request.params.id,
+    }
+  )
+  response.json(restaurantDeleted);
 });

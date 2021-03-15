@@ -5,10 +5,10 @@ const hotelSchema = new mongoose.Schema({
   address: String,
   city: String,
   country: String,
-  stars: Number, //entre 1 et 5
+  stars: Number, // entre 1 et 5
   hasSpa: Boolean,
   hasPool: Boolean,
-  priceCategory: Number, // entre 1 et 3
+  priceCategory: Number // entre 1 et 3
 });
 
 const hotelModel = mongoose.model("hotels", hotelSchema);
