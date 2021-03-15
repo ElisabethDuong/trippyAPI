@@ -44,15 +44,11 @@ app.post('/hotels', async (request, response) =>{
 
 app.put('/hotels/:id', (request, response) => {
  const hotels = await hotelModel
-    .findOne({
-      _id: request.params.id
+    .updateOne({
+     _id: request.params.id
     })
-   .exec();
-  hotels.name = hotelName;
-  hotelModel
-  .updateOne
-  
-  
+  hotels
+  response.send("hotêl mis à jour");
 });
 
 app.delete('/hotels/:id', (request, response) =>{
