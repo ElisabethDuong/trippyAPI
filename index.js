@@ -38,7 +38,15 @@ app.get("/restaurants/:id", async (request, response) => {
 });
 
 app.post("/restaurants", async (request, response) => {
-    await restaurantModel.create({ name: request.body.name });
+    await restaurantModel.create({ 
+        name: request.body.name,
+        address: request.body.address,
+        city: request.body.city,
+        country: request.body.country,
+        stars: request.body.stars,
+        cuisine: request.body.cuisine,
+        priceCategory: request.body.priceCategory
+    });
     response.send("Restaurant ajouté")
 });
 
