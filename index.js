@@ -51,7 +51,6 @@ app.put("/hotels/:id", async (request, response) => {
   );
   hotel.name;
   response.json(hotel);
-  response.send("hotêl mis à jour");
 });
 
 app.delete("/hotels/:id", async (request, response) => {
