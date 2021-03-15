@@ -38,7 +38,7 @@ app.get("/restaurants/:id", async (request, response) => {
 });
 
 app.post("/restaurants", async (request, response) => {
-    await restaurantModel.create({ 
+    await restaurantModel.create({
         name: request.body.name,
         address: request.body.address,
         city: request.body.city,
@@ -50,3 +50,18 @@ app.post("/restaurants", async (request, response) => {
     response.send("Restaurant ajouté")
 });
 
+app.put("/restaurants/:id", async (request, response) => {
+    // console.log(request.query);
+    const newName = request.query.newName;
+    await restaurantModel
+        .updateOne(
+            {
+                _id: request.params.id,
+            },
+            {
+            name: newName
+            },
+        )
+        .exec();
+    response.send("Nom mis à jour")
+});
