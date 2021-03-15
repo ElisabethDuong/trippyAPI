@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const hotelModel = require("./models/hotels");
 const restaurantModel = require("./models/restaurants");
-const bodyParser = require('body-parser');
-
+const bodyParser = require("body-parser");
 
 mongoose.connect(
   "mongodb://localhost:27017/trippy-API",
@@ -37,19 +36,22 @@ app.get("/hotels/:id", async (request, response) => {
   response.json(hotels);
 });
 
-app.post('/hotels', async (request, response) =>{
- await hotelModel.create({name:request.body.name});
- response.send("hotêl ajouté");
+app.post("/hotels", async (request, response) => {
+  await hotelModel.create({ name: request.body.name });
+  response.send("hotêl ajouté");
 });
 
-app.put('/hotels/:id', (request, response) => {
- const hotels = await hotelModel
-    .updateOne({
-     _id: request.params.id
-    })
-  hotels
+app.put("/hotels/:id", async (request, response) => {
+  const newName = request.query.newName;
+  const hotel = await hotelModel.updateOne(
+    { _id: request.params.id },
+    { name: newName }
+  );
+  console.log(hotel);
+  console.log(hotel.name);
+  hotel.name;
+  response.json(hotel);
   response.send("hotêl mis à jour");
 });
 
-app.delete('/hotels/:id', (request, response) =>{
-});
+app.delete("/hotels/:id", (request, response) => {});
