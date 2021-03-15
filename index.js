@@ -17,7 +17,7 @@ const port = 8000;
 const app = express();
 
 app.listen(port, () => {
-  console.log("serveur works");
+  console.log(`Server started on port ${port}`);
 });
 
 app.use(bodyParser.json());

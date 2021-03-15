@@ -13,6 +13,7 @@ const hotels = [
     hasPool: false,
     priceCategory: 3, // entre 1 et 3
   },
+
   {
     name: "Sursum Corda",
     address: "Trasteverde 12",
@@ -34,6 +35,25 @@ const hotels = [
     hasPool: true,
     priceCategory: 2, // entre 1 et 3
   },
+
+  {
+    name: "Caesars Palace",
+    address: "3570 Las Vegas Blvd South",
+    city: "Las Vegas",
+    country: "USA",
+    stars: 4,
+    hasSpa: true,
+    hasPool: true,
+    priceCategory: 3
+  },
+
+  {
+    name: "Imperial Hotel Tokyo"
+  },
+
+  {
+    name: "Hotel Regina"
+  }
 ];
 
 const restaurants = [
@@ -49,13 +69,14 @@ const restaurants = [
 
   {
     name: "Dolce Vita",
-    address: "3 bd Montparnase",
+    address: "3 boulevard Montparnasse",
     city: "Paris",
     country: "France",
     stars: 3, // entre 1 et 3
     cuisine: "cuisine italienne",
     priceCategory: 2, // entre 1 et 3
   },
+
   {
     name: "Ichiran",
     address: "Palais de Tokyo",
@@ -65,11 +86,32 @@ const restaurants = [
     cuisine: "saveurs japonaises",
     priceCategory: 2, // entre 1 et 3
   },
+
+  // {
+  //   name: "Holybelly 5",
+  //   address: "5 rue Lucien Sampaix",
+  //   city: "Paris",
+  //   country: "France",
+  //   stars: 3,
+  //   cuisine: "les meilleurs pancakes de ta vie !"
+  // },
+
+  // {
+  //   name: "La Fonda 2"
+  // },
+
+  // {
+  //   name: "Jantchi"
+  // }
 ];
 
-mongoose.connect("mongodb://localhost:27017/trippy-API", () => {
-  console.log("Database Connected");
-});
+mongoose.connect(
+  "mongodb://localhost:27017/trippy-API",
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log("Database Connected");
+  }
+);
 
 hotelModel.deleteMany({}).then(() => {
   hotelModel.create(hotels);
