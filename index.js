@@ -59,9 +59,18 @@ app.put("/restaurants/:id", async (request, response) => {
                 _id: request.params.id,
             },
             {
-            name: newName
+                name: newName
             },
         )
         .exec();
     response.send("Nom mis à jour")
+});
+
+app.delete("/restaurants/:id", async (request, response) => {
+    await restaurantModel
+        .deleteOne(
+            {
+                _id: request.params.id
+            }),
+        response.send("Restaurant supprimé")
 });
