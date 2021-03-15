@@ -42,7 +42,16 @@ app.post('/hotels', async (request, response) =>{
  response.send("hotêl ajouté");
 });
 
-app.put('/hotels/:id', (request, response) =>{
+app.put('/hotels/:id', (request, response) => {
+ const hotels = await hotelModel
+    .findOne({
+      _id: request.params.id
+    })
+   .exec();
+  hotels.name = hotelName;
+  hotelModel
+  .updateOne
+  
   
 });
 
