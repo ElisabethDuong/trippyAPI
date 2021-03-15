@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 app.get("/restaurants", async (request, response) => {
     const restaurants = await restaurantModel.find().lean().exec();
-    res.json(restaurants);
+    response.json(restaurants);
 });
 
 app.get("/restaurants/:id", async (request, response) => {
@@ -34,7 +34,7 @@ app.get("/restaurants/:id", async (request, response) => {
         })
         .lean()
         .exec()
-    res.json(restaurants);
+    response.json(restaurants);
 });
 
 app.post("/restaurants", async (request, response) => {
